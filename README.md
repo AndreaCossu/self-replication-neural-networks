@@ -5,6 +5,8 @@ Unofficial code for some of the experiments of the paper "Self-Replication in Ne
 Short story short: I was curious about the paper, did not find the code, decided to write one in Jax.  
 Not super-polished, yet.
 
+![trajectory](trained_quine.png)
+
 ## How to use
 
 Pre-requisites: jax, optax, matplotlib, numpy, scikit-learn
@@ -19,6 +21,7 @@ To run: python \[your script.py\] [args]
 
 The command-line arguments are only a few (`python script.py --help` to list them).  
 Inspecting the script requires a few minutes.
+
 
 
 

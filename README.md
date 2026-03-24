@@ -22,6 +22,22 @@ To run: python \[your script.py\] [args]
 The command-line arguments are only a few (`python script.py --help` to list them).  
 Inspecting the script requires a few minutes.
 
+## Examples
+* Perform self-application (`--self_replicate`) for 200 steps without adding noise to the resulting parameters. Every 50 steps update the network's parameter with the currently generated parameters.  
+
+```bash
+python quine.py --weightwise_iterations 200 --hidden_size 20 --self_replicate --regenerate_every 50 --noise 0
+```
+
+Warning: this run sometimes results in NaN values in the parameters (in line with the original paper). The script will stop and plot the PCA up to that step. Use the `--seed` if you want to use a fixed seed.
+
+* Train a single network (`--self_train`) to become a fixed point: 1 training cycle with 200 training epochs and without any self application steps.  
+
+```bash
+python train_quine.py --cycles 1 --train_epochs_per_cycle 200 --apply_steps_per_cycle 0 --lr 1e-3 --hidden_size 20 --self_train
+```
+
+
 
 
 

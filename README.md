@@ -37,6 +37,13 @@ Warning: this run sometimes results in NaN values in the parameters (in line wit
 python train_quine.py --cycles 1 --train_epochs_per_cycle 200 --apply_steps_per_cycle 0 --lr 1e-3 --hidden_size 20 --self_train
 ```
 
+You can get unexpected results. For example:
+```bash
+python train_quine.py --cycles 10 --train_epochs_per_cycle 500 --apply_steps_per_cycle 3 --lr 1e-1 --hidden_size 8 --self_train
+```
+results in the following trajectory, where the apply steps cause the jump in the parameter space as the training did not converge to a high-order quine.
+
+![trajectory](trained_quine_500_3.png)
 
 
 

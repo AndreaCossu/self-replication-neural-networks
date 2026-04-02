@@ -5,7 +5,6 @@ Unofficial code for some of the experiments of the papers
 and "Goals for Self-Replicating Neural Networks" by Gabor et al. (ALIFE, 2021) https://dx.doi.org/10.1162/isal_a_00439
 
 Short story short: I was curious about the papers, did not find the code, decided to write one in Jax.  
-Not super-polished, yet.
 
 ![trajectory](trained_quine.png)
 

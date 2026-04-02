@@ -1,8 +1,10 @@
 # Self Replication in Neural Networks
 
-Unofficial code for some of the experiments of the paper "Self-Replication in Neural Networks" by Gabor et al. (Artificial Life, 2022) https://doi.org/10.1162/artl_a_00359
+Unofficial code for some of the experiments of the papers  
+"Self-Replication in Neural Networks" by Gabor et al. (Artificial Life, 2022) https://doi.org/10.1162/artl_a_00359  
+and "Goals for Self-Replicating Neural Networks" by Gabor et al. (ALIFE, 2021) https://dx.doi.org/10.1162/isal_a_00439
 
-Short story short: I was curious about the paper, did not find the code, decided to write one in Jax.  
+Short story short: I was curious about the papers, did not find the code, decided to write one in Jax.  
 Not super-polished, yet.
 
 ![trajectory](trained_quine.png)
@@ -11,10 +13,11 @@ Not super-polished, yet.
 
 Pre-requisites: jax, optax, matplotlib, numpy, scikit-learn
 
-Two main scripts, depending on what you want to do:
+Three main scripts, depending on what you want to do:
 * quine.py --> use this for weightwise (self)-application N <- M or N <- N
 * train_quine.py -> use this for weightwise (self)-training N <-w M or N <-w N (can alternate between a few steps of training and a few steps of application).
-
+* train_task_quine.py -> use this for weightwise self-training **together with** training on the MNIST task.
+  
 Each script produces a PCA plot of the parameters of the N network over time.
 
 To run: python \[your script.py\] [args] 
@@ -37,7 +40,16 @@ Warning: this run sometimes results in NaN values in the parameters (in line wit
 python train_quine.py --cycles 1 --train_epochs_per_cycle 200 --apply_steps_per_cycle 0 --lr 1e-3 --hidden_size 20 --self_train
 ```
 
-You can get unexpected results. For example:
+* Train a single network to become a fixed point while training it also to solve the MNIST classification task.  
+Note that currently there is no train-validation-test split but only a train-test split. Be careful if you do model selection 😁
+
+```bash
+python train_task_quine.py --cycles 50 --train_epochs_per_cycle 10 --apply_steps_per_cycle 0 --hidden_size 128
+```
+
+---
+
+Some results you can get:
 ```bash
 python train_quine.py --cycles 10 --train_epochs_per_cycle 500 --apply_steps_per_cycle 3 --lr 1e-1 --hidden_size 8 --self_train
 ```
